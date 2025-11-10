@@ -13,6 +13,11 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
+  @Get('professionals')
+  findAllProfessionals() {
+    return this.usersService.findAllProfessionals();
+  }
+
   @UseGuards(JwtAuthGuard)
   @Get()
   findAll() {

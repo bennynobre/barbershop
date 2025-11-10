@@ -59,6 +59,15 @@ export class UsersService {
       .getOne();
   }
 
+  async findAllProfessionals(): Promise<User[]> {
+    return this.usersRepository.find({
+      where: {
+        role: 'PROFISSIONAL',
+      },
+      select: ['id', 'nome', 'email', 'role', 'createdAt', 'updatedAt'], 
+    });
+  }
+
   update(id: string, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
   }
