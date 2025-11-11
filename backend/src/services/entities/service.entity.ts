@@ -3,8 +3,11 @@ import {
   Column, 
   PrimaryGeneratedColumn, 
   CreateDateColumn, 
-  UpdateDateColumn 
+  UpdateDateColumn, 
+  OneToMany
 } from 'typeorm';
+
+import { Appointment } from 'src/appointments/entities/appointment.entity';
 
 @Entity({ name: 'services' }) 
 export class Service {
@@ -30,4 +33,7 @@ export class Service {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @OneToMany(() => Appointment, (appointment) => appointment.servico)
+  agendamentos: Appointment[];
 }

@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+import { Appointment } from 'src/appointments/entities/appointment.entity';
+import { Availability } from 'src/availability/entities/availability.entity';
 
 @Entity({ name: 'users' }) 
 export class User {
@@ -26,4 +28,13 @@ export class User {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @OneToMany(() => Appointment, (appointment) => appointment.cliente)
+  agendamentosComoCliente: Appointment[];
+
+  @OneToMany(() => Appointment, (appointment) => appointment.profissional)
+  agendamentosComoProfissional: Appointment[];
+
+  @OneToMany(() => Availability, (availability) => availability.profissional)
+  disponibilidades: Availability[];
 }
