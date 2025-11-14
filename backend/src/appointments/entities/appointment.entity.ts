@@ -48,6 +48,9 @@ export class Appointment {
   @Column({ type: 'timestamp with time zone' })
   data_hora_fim: Date;
 
+  @Column({ type: 'text', nullable: true }) 
+  motivo_cancelamento: string | null;
+
   @Column({
     type: 'enum',
     enum: AppointmentStatus,
