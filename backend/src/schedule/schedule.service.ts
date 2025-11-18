@@ -33,7 +33,7 @@ export class ScheduleService {
     if (!service) return []; 
     const duracaoServico = service.duracao_minutos;
 
-    const data = parseISO(dateStr);
+    const data = parseISO(`${dateStr}T12:00:00`);
     const diaDaSemana = getDay(data); 
 
     const availability = await this.availabilityService.findByProfessional(professionalId);

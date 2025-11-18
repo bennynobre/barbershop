@@ -30,7 +30,7 @@ export class AppointmentsController {
   ) {
     const professionalId = req.user.id;
 
-    const data = parseISO(dateStr);
+    const data = parseISO(`${dateStr}T12:00:00`);
     const inicioDoDia = startOfDay(data);
     const fimDoDia = endOfDay(data);
 
@@ -46,7 +46,11 @@ export class AppointmentsController {
     @Param('id') id: string,
     @Body() updateStatusDto: UpdateAppointmentStatusDto,
   ) {
-    return this.appointmentsService.updateStatus(id, updateStatusDto.status);
+    return this.appointmentsService.updateStatus(
+      id, 
+      updateStatusDto.status,
+      updateStatusDto.motivo_cancelamento 
+    );
   }
 
   @Patch(':id')

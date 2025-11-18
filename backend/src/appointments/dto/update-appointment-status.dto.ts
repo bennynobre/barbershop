@@ -1,4 +1,4 @@
-import { IsEnum, IsNotEmpty } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { AppointmentStatus } from '../entities/appointment.entity';
 
 export class UpdateAppointmentStatusDto {
@@ -7,4 +7,8 @@ export class UpdateAppointmentStatusDto {
   })
   @IsNotEmpty()
   status: AppointmentStatus;
+
+  @IsString()
+  @IsOptional()
+  motivo_cancelamento?: string;
 }
